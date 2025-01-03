@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('product_code', 50);
             $table->text('product_name', 500);
             $table->text('image');
-            $table->text('short_desciption', 250);
-            $table->mediumText('desciption');
+            $table->text('short_description', 250);
+            $table->mediumText('description');
             $table->decimal('standard_cost', 16, 0);
             $table->decimal('list_price', 16, 0);
             $table->integer('quantity_per_unit');

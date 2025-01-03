@@ -17,6 +17,9 @@ return new class extends Migration
             $table->bigInteger('employee_id')->unsigned();
             $table->dateTime('export_date');
             $table->timestamps();
+
+            $table->foreign('store_id')->references('id')->on('shop_stores');
+            $table->foreign('employee_id')->references('id')->on('acl_users');
         });
     }
 

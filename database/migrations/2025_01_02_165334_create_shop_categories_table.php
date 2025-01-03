@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('category_code', 50);
             $table->text('category_name');
-            $table->text('desciption');
+            $table->text('description');
             $table->text('image');
             $table->timestamps();
         });

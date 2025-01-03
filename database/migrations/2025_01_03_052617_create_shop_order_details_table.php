@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('order_detail_status', 50);
             $table->dateTime('date_allocated');
             $table->timestamps();
+
+            $table->foreign('order_id')->references('id')->on('shop_orders');
+            $table->foreign('product_id')->references('id')->on('shop_products');
         });
     }
 
