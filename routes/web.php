@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\ShopSettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
+})->name('home');
+Route::get('/register', [RegisterController::class, 'index'])->name('auth.register.index');
+Route::post('/register', [RegisterController::class, 'register'])->name('auth.register.register');
+Route::get('/register-success', [RegisterController::class, 'registerSuccess'])->name('auth.register.register-success');
+Route::get('/active-user', [RegisterController::class, 'activeUser'])->name('auth.register.active-user');
 Route::get('/login', [LoginController::class, 'index'])->name('auth.login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('auth.login.login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('auth.login.logout');
