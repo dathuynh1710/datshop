@@ -8,7 +8,7 @@
     <h1>Danh sách Cấu hình</h1>
     Số lượng dữ liệu: {{ count($dsShopSettings) }}
     <br />
-    <a class="btn btn-primary" href="#">Thêm</a>
+    <a class="btn btn-primary" href="{{ route('backend.shop_settings.create') }}">Thêm</a>
     <table class="table table-bordered">
         <tr>
             <th>Id</th>
@@ -32,8 +32,8 @@
                 </td>
                 <td>{{ $s->updated_at }}</td>
                 <td>
-                    <a href="#" class="btn btn-warning">Sửa</a>
-                    <form method="post" action="#">
+                    <a href="{{ route('backend.shop_settings.edit', ['id' => $s->id]) }}" class="btn btn-warning">Sửa</a>
+                    <form method="post" action="{{ route('backend.shop_settings.destroy', ['id' => $s->id]) }}">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger">Xóa</button>
