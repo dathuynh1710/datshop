@@ -25,6 +25,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('acl_users');
+            $table->foreign('post_category_id')->references('id')->on('shop_posts_categories');
         });
     }
 

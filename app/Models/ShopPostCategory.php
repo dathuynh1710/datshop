@@ -9,7 +9,7 @@ class ShopPostCategory extends Model
 {
     use HasFactory;
 
-    protected $table = 'shop_post_categories';
+    protected $table = 'shop_posts_categories';
     protected $fillable = [
         'post_category_code',
         'post_category_name',

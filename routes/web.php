@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Backend\ShopPostController;
 use App\Http\Controllers\Backend\ShopSettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,10 @@ Route::post('/backend/cau-hinh/store', [ShopSettingController::class, 'store'])-
 Route::get('/backend/cau-hinh/{id}', [ShopSettingController::class, 'edit'])->name('backend.shop_settings.edit');
 Route::put('/backend/cau-hinh/{id}', [ShopSettingController::class, 'update'])->name('backend.shop_settings.update');
 Route::delete('/backend/cau-hinh/{id}', [ShopSettingController::class, 'destroy'])->name('backend.shop_settings.destroy');
+
+Route::get('/backend/bai-viet', [ShopPostController::class, 'index'])->name('backend.shop_posts.index');
+Route::get('/backend/bai-viet/create', [ShopPostController::class, 'create'])->name('backend.shop_posts.create');
+Route::post('/backend/bai-viet/store', [ShopPostController::class, 'store'])->name('backend.shop_posts.store');
+Route::get('/backend/bai-viet/{id}', [ShopPostController::class, 'edit'])->name('backend.shop_posts.edit');
+Route::put('/backend/bai-viet/{id}', [ShopPostController::class, 'update'])->name('backend.shop_posts.update');
+Route::delete('/backend/bai-viet/{id}', [ShopPostController::class, 'destroy'])->name('backend.shop_posts.destroy');

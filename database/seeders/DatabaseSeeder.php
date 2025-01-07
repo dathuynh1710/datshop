@@ -29,11 +29,11 @@ class DatabaseSeeder extends Seeder
         $this->call([ShopProductImagesSeeder::class]);
         $this->call([ShopProductDiscountSeeder::class]);
 
+        // Dữ liệu mẫu về Users
+        $this->call([ShopUsersSeeder::class]);
+
         // Dữ liệu mẫu về Stores
         $this->call([ShopStoreSeeder::class]);
         $this->call([ShopImportsSeeder::class]);
-
-        // Dữ liệu mẫu về Users
-        $this->call([ShopUsersSeeder::class]);
     }
 }
