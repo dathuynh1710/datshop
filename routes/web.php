@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\ShopPostController;
 use App\Http\Controllers\Backend\ShopSettingController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\AclUserHasRoleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,3 +31,8 @@ Route::post('/backend/bai-viet/store', [ShopPostController::class, 'store'])->na
 Route::get('/backend/bai-viet/{id}', [ShopPostController::class, 'edit'])->name('backend.shop_posts.edit');
 Route::put('/backend/bai-viet/{id}', [ShopPostController::class, 'update'])->name('backend.shop_posts.update');
 Route::delete('/backend/bai-viet/{id}', [ShopPostController::class, 'destroy'])->name('backend.shop_posts.destroy');
+
+Route::get('/backend/gan-vai-tro-cho-nguoi-dung', [AclUserHasRoleController::class, 'index'])->name('backend.acl_user_has_roles.index');
+Route::get('/backend/gan-vai-tro-cho-nguoi-dung/create', [AclUserHasRoleController::class, 'create'])->name('backend.acl_user_has_roles.create');
+Route::post('/backend/gan-vai-tro-cho-nguoi-dung/create', [AclUserHasRoleController::class, 'store'])->name('backend.acl_user_has_roles.store');
+Route::get('/backend/gan-vai-tro-cho-nguoi-dung/{username}/create', [AclUserHasRoleController::class, 'create_with_username'])->name('backend.acl_user_has_roles.create_with_username');

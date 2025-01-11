@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('acl_roles');
-            $table->foreign('permission_id')->references('id')->on('acl_users');
+            $table->foreign('permission_id')->references('id')->on('acl_permissions');
         });
     }
 
