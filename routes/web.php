@@ -4,8 +4,12 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\ShopPostController;
 use App\Http\Controllers\Backend\ShopSettingController;
+use App\Http\Controllers\API\APIAclRoleHasPermissionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AclUserHasRoleController;
+use App\Http\Controllers\Backend\AclRoleHasPermissionController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,3 +40,8 @@ Route::get('/backend/gan-vai-tro-cho-nguoi-dung', [AclUserHasRoleController::cla
 Route::get('/backend/gan-vai-tro-cho-nguoi-dung/create', [AclUserHasRoleController::class, 'create'])->name('backend.acl_user_has_roles.create');
 Route::post('/backend/gan-vai-tro-cho-nguoi-dung/create', [AclUserHasRoleController::class, 'store'])->name('backend.acl_user_has_roles.store');
 Route::get('/backend/gan-vai-tro-cho-nguoi-dung/{username}/create', [AclUserHasRoleController::class, 'create_with_username'])->name('backend.acl_user_has_roles.create_with_username');
+
+Route::get('/api/v1/acl_role_has_permissions/getByRoleId/{role_id?}', [APIAclRoleHasPermissionController::class, 'getByRoleId'])->name('api.acl_role_has_permissions.getByRoleId');
+Route::get('/backend/cap-quyen-cho-vai-tro', [AclRoleHasPermissionController::class, 'index'])->name('backend.acl_role_has_permissions.index');
+Route::get('/backend/cap-quyen-cho-vai-tro/create', [AclRoleHasPermissionController::class, 'create'])->name('backend.acl_role_has_permissions.create');
+Route::post('/backend/cap-quyen-cho-vai-tro/create', [AclRoleHasPermissionController::class, 'store'])->name('backend.acl_role_has_permissions.store');
