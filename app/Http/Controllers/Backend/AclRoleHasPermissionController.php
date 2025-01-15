@@ -13,13 +13,13 @@ class AclRoleHasPermissionController extends Controller
 {
     public function index()
     {
-        // $aclRoleHasPermissions = AclRoleHasPermission::all();
         // Eager loading
         $aclRoleHasPermissions =
-            AclRoleHasPermission::with('role')
-            ->with('permission')
-            ->get();
+            AclRoleHasPermission::with('role') // load relationship role()
+            ->with('permission') // load relationship permission()
+            ->get(); //execute query
 
+        // Collection::groupBy()
         $groupedAclRoleHasPermissions = $aclRoleHasPermissions->groupBy('role.display_name');
         // dd($aclRoleHasPermissions, $groupedAclRoleHasPermissions->all());
 
