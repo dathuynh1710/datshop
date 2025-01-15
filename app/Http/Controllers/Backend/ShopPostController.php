@@ -7,16 +7,49 @@ use App\Models\ShopPost;
 use Illuminate\Http\Request;
 use App\Models\AclUser;
 use App\Models\ShopPostCategory;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ShopPostController extends Controller
 {
+    // Hàm khởi tạo
+    public function __construct()
+    {
+        // Policy kiểm tra quyền
+    }
     public function index()
     {
+        // Authentication
+        // Kiểm tra xem có đăng nhập chưa?
+        if (!Auth::check()) {
+            return redirect(route('auth.login.index'));
+        }
+        // Kiểm tra quyền (Authorization)
+        // - Nếu có quyền thì thực thi action
+        // - Nếu không có quyền thì hiển thị 403: bạn không có quyền truy cập chức năng.
+        $hasPermission = false;
+        $permission = 'shop_posts::view';
+        $hasPermission = shopHasPermission(Auth::user(), $permission);
+        if (!$hasPermission) {
+            return abort(403);
+        }
+
         $lstPosts = ShopPost::all();
         return view('backend.shop_posts.index')->with('lstPosts', $lstPosts);
     }
     public function create()
     {
+        // Authentication
+        // Kiểm tra xem có đăng nhập chưa?
+        if (!Auth::check()) {
+            return redirect(route('auth.login.index'));
+        }
+        // Kiểm tra quyền (Authorization)
+        // - Nếu có quyền thì thực thi action
+        // - Nếu không có quyền thì hiển thị 403: bạn không có quyền truy cập chức năng.
+        if (!Gate::allows('shop_posts::create')) {
+            abort(403);
+        }
         $lstUsers = AclUser::all();
         $lstPostCaterories = ShopPostCategory::all();
         return view('backend.shop_posts.create')
@@ -26,6 +59,18 @@ class ShopPostController extends Controller
 
     public function store(Request $request)
     {
+        // Authentication
+        // Kiểm tra xem có đăng nhập chưa?
+        if (!Auth::check()) {
+            return redirect(route('auth.login.index'));
+        }
+
+        // Kiểm tra quyền (Authorization)
+        // - Nếu có quyền thì thực thi action
+        // - Nếu không có quyền thì hiển thị 403: bạn không có quyền truy cập chức năng.
+        if (!Gate::allows('shop_posts::create')) {
+            abort(403);
+        }
         $newPost = new ShopPost();
         $newPost->post_slug = $request->post_slug;
         $newPost->post_title = $request->post_title;
@@ -47,7 +92,12 @@ class ShopPostController extends Controller
 
     public function edit($id) {}
 
-    public function update(Request $request, $id) {}
+    public function update(Request $request, $id)
+    {
+        if (!Gate::allows('shop_posts::update')) {
+            abort(403);
+        }
+    }
 
     public function destroy($id) {}
 }
