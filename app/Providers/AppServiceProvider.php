@@ -27,18 +27,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->auth->provider('custom', function ($app, array $config) {
             return new CustomUserProvider($app['hash'], $config['model']);
         });
-        // Định nghĩa các cổng kiểm tra dữ liệu
-        // Gate::define('shop_posts::view', function(AclUser $user) {
-        //     shopHasPermission($user, 'shop_posts::view');
-        // });
 
-        // Gate::define('shop_posts::create', [ShopPostPolicy::class, 'create']);
-        // Gate::define('shop_posts::update', [ShopPostPolicy::class, 'update']);
-        // Gate::define('shop_posts::delete', function(AclUser $user) {
-        //     return shopHasPermission($user, 'shop_posts::delete');
-        // });
-
-        // Định nghĩa các gate liên quan về shop_categories
         $allPermissions = AclPermission::all();
         // dd($allPermissions);
         foreach ($allPermissions as $permission) {

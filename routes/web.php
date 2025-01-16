@@ -8,6 +8,8 @@ use App\Http\Controllers\API\APIAclRoleHasPermissionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AclUserHasRoleController;
 use App\Http\Controllers\Backend\AclRoleHasPermissionController;
+use App\Http\Controllers\Backend\ShopCategoryController;
+
 
 
 
@@ -45,3 +47,10 @@ Route::get('/api/v1/acl_role_has_permissions/getByRoleId/{role_id?}', [APIAclRol
 Route::get('/backend/cap-quyen-cho-vai-tro', [AclRoleHasPermissionController::class, 'index'])->name('backend.acl_role_has_permissions.index');
 Route::get('/backend/cap-quyen-cho-vai-tro/create', [AclRoleHasPermissionController::class, 'create'])->name('backend.acl_role_has_permissions.create');
 Route::post('/backend/cap-quyen-cho-vai-tro/create', [AclRoleHasPermissionController::class, 'store'])->name('backend.acl_role_has_permissions.store');
+
+Route::get('/backend/chuyen-muc-san-pham', [ShopCategoryController::class, 'index'])->name('backend.shop_categories.index');
+Route::get('/backend/chuyen-muc-san-pham/them', [ShopCategoryController::class, 'create'])->name('backend.shop_categories.create');
+Route::post('/backend/chuyen-muc-san-pham/store', [ShopCategoryController::class, 'store'])->name('backend.shop_categories.store');
+Route::get('/backend/chuyen-muc-san-pham/{id}', [ShopCategoryController::class, 'edit'])->name('backend.shop_categories.edit');
+Route::put('/backend/chuyen-muc-san-pham/{id}', [ShopCategoryController::class, 'update'])->name('backend.shop_categories.update');
+Route::delete('/backend/chuyen-muc-san-pham/{id}', [ShopCategoryController::class, 'destroy'])->name('backend.shop_categories.destroy');
