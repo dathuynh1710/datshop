@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\ShopCategory;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
-class ShopCategoryStoreRequest extends FormRequest
+class ShopCategoryDestroyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,9 +18,10 @@ class ShopCategoryStoreRequest extends FormRequest
             return false;
         }
         // Nếu đã đăng nhập -> mà không vượt qua cửa an ninh (Gate) -> tức là k có quyền truy cập
-        if (!Gate::allows('shop_categories::create')) {
+        if (!Gate::allows('shop_categories::delete')) {
             return false;
         }
+
         return true;
     }
 
@@ -32,23 +33,7 @@ class ShopCategoryStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_code' => 'required|min:3|max:100',
-            'category_name' => 'required',
-        ];
-    }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array<string, string>
-     */
-    public function messages(): array
-    {
-        return [
-            'category_code.required' => 'Mã chuyên mục bắt buộc nhập',
-            'category_code.min' => 'Mã chuyên mục phải từ 3 ký tự trở lên',
-            'category_code.max' => 'Mã chuyên mục phải chỉ tối đã 100 ký tự',
-            'category_name.required' => 'Tên chuyên mục bắt buộc nhập',
+            //
         ];
     }
 }

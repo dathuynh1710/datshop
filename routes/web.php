@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AclUserHasRoleController;
 use App\Http\Controllers\Backend\AclRoleHasPermissionController;
 use App\Http\Controllers\Backend\ShopCategoryController;
+use App\Http\Controllers\Backend\ShopSupplierController;
 
 
 
@@ -54,3 +55,10 @@ Route::post('/backend/chuyen-muc-san-pham/store', [ShopCategoryController::class
 Route::get('/backend/chuyen-muc-san-pham/{id}', [ShopCategoryController::class, 'edit'])->name('backend.shop_categories.edit');
 Route::put('/backend/chuyen-muc-san-pham/{id}', [ShopCategoryController::class, 'update'])->name('backend.shop_categories.update');
 Route::delete('/backend/chuyen-muc-san-pham/{id}', [ShopCategoryController::class, 'destroy'])->name('backend.shop_categories.destroy');
+
+Route::get('/backend/nha-cung-cap', [ShopSupplierController::class, 'index'])->name('backend.shop_suppliers.index');
+Route::get('/backend/nha-cung-cap/them', [ShopSupplierController::class, 'create'])->name('backend.shop_suppliers.create');
+Route::post('/backend/nha-cung-cap/store', [ShopSupplierController::class, 'store'])->name('backend.shop_suppliers.store');
+Route::get('/backend/nha-cung-cap/{id}', [ShopSupplierController::class, 'edit'])->name('backend.shop_suppliers.edit');
+Route::put('/backend/nha-cung-cap/{id}', [ShopSupplierController::class, 'update'])->name('backend.shop_suppliers.update');
+Route::delete('/backend/nha-cung-cap/{id}', [ShopSupplierController::class, 'destroy'])->name('backend.shop_suppliers.destroy');

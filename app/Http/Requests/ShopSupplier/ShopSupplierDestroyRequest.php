@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\ShopSupplier;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
-class ShopCategoryDestroyRequest extends FormRequest
+class ShopSupplierDestroyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,7 +18,7 @@ class ShopCategoryDestroyRequest extends FormRequest
             return false;
         }
         // Nếu đã đăng nhập -> mà không vượt qua cửa an ninh (Gate) -> tức là k có quyền truy cập
-        if (!Gate::allows('shop_categories::delete')) {
+        if (!Gate::allows('shop_suppliers::delete')) {
             return false;
         }
 

@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\ShopCategory;
 use Illuminate\Http\Request;
-use App\Http\Requests\ShopCategoryCreateRequest;
-use App\Http\Requests\ShopCategoryIndexRequest;
-use App\Http\Requests\ShopCategoryStoreRequest;
-use App\Http\Requests\ShopCategoryDestroyRequest;
+use App\Http\Requests\ShopCategory\ShopCategoryCreateRequest;
+use App\Http\Requests\ShopCategory\ShopCategoryIndexRequest;
+use App\Http\Requests\ShopCategory\ShopCategoryStoreRequest;
+use App\Http\Requests\ShopCategory\ShopCategoryDestroyRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ShopCategoryController extends Controller
