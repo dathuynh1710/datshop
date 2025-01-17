@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\AclUserHasRoleController;
 use App\Http\Controllers\Backend\AclRoleHasPermissionController;
 use App\Http\Controllers\Backend\ShopCategoryController;
 use App\Http\Controllers\Backend\ShopSupplierController;
+use App\Http\Controllers\Backend\ShopProductController;
 
 
 
@@ -62,3 +63,10 @@ Route::post('/backend/nha-cung-cap/store', [ShopSupplierController::class, 'stor
 Route::get('/backend/nha-cung-cap/{id}', [ShopSupplierController::class, 'edit'])->name('backend.shop_suppliers.edit');
 Route::put('/backend/nha-cung-cap/{id}', [ShopSupplierController::class, 'update'])->name('backend.shop_suppliers.update');
 Route::delete('/backend/nha-cung-cap/{id}', [ShopSupplierController::class, 'destroy'])->name('backend.shop_suppliers.destroy');
+
+Route::get('/backend/san-pham', [ShopProductController::class, 'index'])->name('backend.shop_products.index');
+Route::get('/backend/san-pham/them', [ShopProductController::class, 'create'])->name('backend.shop_products.create');
+Route::post('/backend/san-pham/store', [ShopProductController::class, 'store'])->name('backend.shop_products.store');
+Route::get('/backend/san-pham/{id}', [ShopProductController::class, 'edit'])->name('backend.shop_products.edit');
+Route::put('/backend/san-pham/{id}', [ShopProductController::class, 'update'])->name('backend.shop_products.update');
+Route::delete('/backend/san-pham/{id}', [ShopProductController::class, 'destroy'])->name('backend.shop_products.destroy');
