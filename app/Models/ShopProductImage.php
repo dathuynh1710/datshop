@@ -19,10 +19,14 @@ class ShopProductImage extends Model
     protected $primaryKey = 'id';
     protected $dates = [];
     protected $dateFormat = 'Y-m-d H:i:s';
-    protected $timestamps = false;
+    public $timestamps = false;
 
-    public function product() {
-        return $this->belongsTo(ShopProduct::class,
-            'product_id', 'id');
+    public function product()
+    {
+        return $this->belongsTo(
+            ShopProduct::class,
+            'product_id',
+            'id'
+        );
     }
 }
