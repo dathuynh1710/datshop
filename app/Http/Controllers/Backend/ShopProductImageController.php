@@ -17,7 +17,7 @@ class ShopProductImageController extends Controller
      */
     public function index()
     {
-        $dsProductImages = ShopProductImage::all();
+        $dsProductImages = ShopProductImage::paginate(5);
 
         return view('backend.shop_product_images.index')
             ->with('dsProductImages', $dsProductImages);
@@ -110,5 +110,27 @@ class ShopProductImageController extends Controller
         }
 
         return redirect(route('backend.shop_product_images.index'));
+    }
+
+    public function batchDelete(Request $request)
+    {
+        $listSelectedIds = $request->listSelectedIds;
+        foreach ($listSelectedIds as $id) {
+            $deletingModel = ShopProductImage::find($id);
+            if ($deletingModel != null) {
+                // Xóa file trong storage
+                $filePath = 'uploads/' . $deletingModel->image;
+                // dd($filePath);
+                Storage::disk('public')->delete($filePath);
+                $deletingModel->delete();
+            }
+        }
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'Đã xóa các hình thành công!!!',
+                'list_deleted_ids' => $listSelectedIds
+            ]
+        );
     }
 }
