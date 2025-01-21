@@ -6,8 +6,35 @@
 
 @section('main-content')
     <h1>Danh sách Hình Sản phẩm</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Khung tìm kiếm</h5>
+            <form name="frmSearch" method="GET" action="{{ route('backend.shop_product_images.search') }}">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="keyword_image">Tên hình</label>
+                        <input type="text" name="keyword_image" id="keyword_image"
+                            placeholder="Nhập từ khóa tìm kiếm theo tên hình" class="form-control"
+                            value="{{ request()->keyword_image }}" />
+                    </div>
+                    <div class="col-6">
+                        <label for="keyword_product_name">Tên sản phẩm</label>
+                        <input type="text" name="keyword_product_name" id="keyword_product_name"
+                            placeholder="Nhập từ khóa tìm kiếm theo tên sản phẩm" class="form-control"
+                            value="{{ request()->keyword_product_name }}" />
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary float-end">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     Số lượng dữ liệu: {{ count($dsProductImages) }}
     <br />
+
     <a class="btn btn-primary" href="{{ route('backend.shop_product_images.create') }}">Thêm</a>
 
     <a class="btn btn-danger" id="btnBatchDelete" href="#"

@@ -74,6 +74,7 @@ Route::delete('/backend/san-pham/{id}', [ShopProductController::class, 'destroy'
 Route::get('/backend/hinh-anh-san-pham', [ShopProductImageController::class, 'index'])->name('backend.shop_product_images.index');
 Route::get('/backend/hinh-anh-san-pham/them', [ShopProductImageController::class, 'create'])->name('backend.shop_product_images.create');
 Route::post('/backend/hinh-anh-san-pham/store', [ShopProductImageController::class, 'store'])->name('backend.shop_product_images.store');
+Route::get('/backend/hinh-anh-san-pham/search', [ShopProductImageController::class, 'search'])->name('backend.shop_product_images.search');
 Route::get('/backend/hinh-anh-san-pham/{id}', [ShopProductImageController::class, 'edit'])->name('backend.shop_product_images.edit');
 Route::put('/backend/hinh-anh-san-pham/{id}', [ShopProductImageController::class, 'update'])->name('backend.shop_product_images.update');
 Route::delete('/backend/hinh-anh-san-pham/{id}', [ShopProductImageController::class, 'destroy'])->name('backend.shop_product_images.destroy');

@@ -133,4 +133,25 @@ class ShopProductImageController extends Controller
             ]
         );
     }
+
+    public function search(Request $request)
+    {
+        $query = ShopProductImage::query();
+        // Nếu keyword_image tồn tại và khác rỗng
+        if (isset($request->keyword_image) && !empty($request->keyword_image)) {
+            $query->where('image', 'like', '%' . $request->keyword_image . '%');
+        }
+
+        // Nếu keyword_product_name tồn tại và khác rỗng
+        if (isset($request->keyword_product_name) && !empty($request->keyword_product_name)) {
+            $query->join('shop_products', 'shop_product_images.product_id', '=', 'shop_products.id')
+                ->where('shop_products.product_name', 'LIKE', '%' . $request->keyword_product_name . '%');
+        }
+        $query->select('shop_product_images.*');
+
+        $dsProductImages =   $query->paginate(5)->appends($request->query());
+
+        return view('backend.shop_product_images.index')
+            ->with('dsProductImages', $dsProductImages);
+    }
 }
